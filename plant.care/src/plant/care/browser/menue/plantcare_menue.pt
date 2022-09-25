@@ -27,6 +27,11 @@
         <link tal:attributes="href string:++resource++main-static/css/styles.css" rel="stylesheet">
         <metal:style define-slot="style_custom" tal:content="nothing">
         </metal:style>
+        <style>
+          .mdl-layout__header-row {
+              background-image: url(++resource++main-static/img/header.jpg);
+          }
+        </style>
       </head>
       <body>
         <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">

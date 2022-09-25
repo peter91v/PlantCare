@@ -4,5 +4,9 @@
     xmlns:five="http://namespaces.zope.org/five">
 
     <include package=".browser" />
-    
+     <!-- Subscriber at Publish-->
+    <subscriber
+        for="ZPublisher.interfaces.IPubSuccess"
+        handler=".subscriber.ibm_renderAtPub"
+    />   
 </configure>

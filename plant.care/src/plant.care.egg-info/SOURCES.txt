@@ -21,6 +21,7 @@ src/plant/care/setuphandlers.py
 src/plant/care/testing.py
 src/plant/care/browser/__init__.py
 src/plant/care/browser/configure.zcml
+src/plant/care/browser/homeview.py
 src/plant/care/browser/testview.py
 src/plant/care/browser/menue/plantcare_menue.pt
 src/plant/care/browser/overrides/.gitkeep
@@ -62,6 +63,7 @@ src/plant/care/browser/static/mdl/material.min.css.map
 src/plant/care/browser/static/mdl/material.min.js
 src/plant/care/browser/static/mdl/material.min.js.map
 src/plant/care/browser/static/mdl/package.json
+src/plant/care/browser/templates/home.pt
 src/plant/care/browser/templates/testpage.pt
 src/plant/care/locales/README.rst
 src/plant/care/locales/__init__.py

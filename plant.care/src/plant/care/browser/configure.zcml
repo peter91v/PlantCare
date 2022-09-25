@@ -17,6 +17,13 @@
 
 	<browser:page
 		for="*"
+		name="plantcare.home"
+		class=".homeview.HomeView"
+		template="./templates/home.pt"
+		permission="zope.Public"
+	/>
+	<browser:page
+		for="*"
 		name="plantcare.test"
 		class=".testview.TestView"
 		template="./templates/testpage.pt"
