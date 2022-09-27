@@ -1,11 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal"
   xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="de"
-  metal:use-macro="here/@@plantcare-main-menue/macros/master">
+  xmlns:xlink="http://www.w3.org/1999/xlink" metal:use-macro="here/@@plantcare-main-menue/macros/master">
 <metal:style_custom fill-slot="style_custom">
-
-
-
-
 </metal:style_custom>
 
 <head>
@@ -21,19 +17,18 @@
 
 
       <div class="container mdl-grid demo-page demo-page--forms mdl-upgraded" tal:define="test view/testread">
-
-
-
         <div class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
 
-        <h1>Test Home</h1>
+          <h1>Test Home</h1>
 
-        <div tal:repeat="temp test"><h4>${temp}</h4></div>
+          <div tal:repeat="temp test">
+            <h4>${temp}</h4>
+          </div>
         </div>
-</div>
-        <script type="application/javascript">
+      </div>
+      <script type="application/javascript">
 
-        </script>
+      </script>
     </tal:main-macro>
   </metal:main>
 </body>
