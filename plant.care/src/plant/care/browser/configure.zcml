@@ -29,5 +29,11 @@
 		template="./templates/testpage.pt"
 		permission="zope.Public"
 	/>
+		<browser:page
+		for="*"
+		name="plantcare.micropi"
+		class=".micropi.RaspiPicoView"
+		permission="zope.Public"
+	/>
 
 </configure>
