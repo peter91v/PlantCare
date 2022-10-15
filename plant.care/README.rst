@@ -68,6 +68,8 @@ Datenbank Einstellung bei Instalation:
     6: "Reload privilege tables now"	        Y  (diese müssen neu geladen)
 
 SQL befehle zum einrichten Datenbank:
+---------------------------------------------------------------------------------
+
     ■	sudo mysql
         -	create database plantcare;
         -	create user 'plantcare'@'%' identified by 'plantcare';
