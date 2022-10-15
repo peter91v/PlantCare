@@ -22,7 +22,7 @@
           <h1>Test Home</h1>
 
           <div tal:repeat="temp test">
-            <h4>${temp}</h4>
+            <h4>${temp/sensname}, ${temp/value}</h4>
           </div>
         </div>
       </div>

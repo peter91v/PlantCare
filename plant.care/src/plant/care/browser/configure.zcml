@@ -35,5 +35,13 @@
 		class=".micropi.RaspiPicoView"
 		permission="zope.Public"
 	/>
+		<browser:page
+		for="*"
+		name="plantcare.configedit"
+		class=".configedit.ConfigEditView"
+		template="./templates/configedit.pt"
+		permission="zope.Public"
+	/>
+
 
 </configure>

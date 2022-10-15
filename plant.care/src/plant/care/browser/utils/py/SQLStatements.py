@@ -36,3 +36,28 @@ def updateSensor(dry, wet, id):
     mycursor.close()
     mydb.close()
     return True
+
+def updateHumidity(hum, id):
+    mydb = cdb()
+    mycursor = mydb.cursor()
+    sql = 'UPDATE Sensors set Humidity = %s WHERE ID = %s'
+    val = (hum, id)
+    mycursor.execute(sql, val)
+    mydb.commit()
+    #print(temp['code'], "was updated.")
+    mycursor.close()
+    mydb.close()
+    return True
+
+def getHumidity(id):
+    mydb = cdb()
+    mycursor = mydb.cursor()
+    sql = 'select SensorName, Humidity from Sensors'
+    val = ()
+    mycursor.execute(sql, val)
+    myresult = mycursor.fetchall()
+    mydb.commit()
+    #print(temp['code'], "was updated.")
+    mycursor.close()
+    mydb.close()
+    return myresult
