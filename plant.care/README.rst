@@ -28,13 +28,16 @@
 plant.care
 ==========
 
-Tell me what your product does
+Installation von PlantCare
 
-Features
+Raspberry Pi auf setzten.
 --------
 
-- Can be bullet points
-
+- Raspberry Pi Imager herunterladen: https://www.raspberrypi.com/software/ und installieren.
+- Betriebssystem auswählen: 
+.. image:: ./docs/pios.jpg
+    :target: ./docs/pios.jpg
+    :alt: License
 
 Examples
 --------
