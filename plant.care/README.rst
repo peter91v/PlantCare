@@ -49,22 +49,23 @@ Installation von PlantCare
 2.	PlantCare Installieren
 ---------------------------------------------------------------------------------
 
-    ■ Ein Ordner mit der Name Plant_Care in /home/pi erstellen.
-    ■ In Terminal diese Ordner Öffnen und den Befehl 'git clone https://github.com/peter91v/PlantCareBase.git .' ausführen. (Punkt am Ende ist wichtig!)
-    ■ Zunächst wird die automatisierte Installation gestartet mit dem './plantinstall.sh' Befehl.
+    ■	Ein Ordner mit der Name Plant_Care in /home/pi erstellen.
+    ■	In Terminal diese Ordner Öffnen und den Befehl 'git clone https://github.com/peter91v/PlantCareBase.git .' ausführen. (Punkt am Ende ist wichtig!)
+    ■	Zunächst wird die automatisierte Installation gestartet mit dem './plantinstall.sh' Befehl.
     (wenn es nicht starten lässt, zuerst mit dem Befehl 'chmod -x plantinstall.sh' das Privileg ändern und erneut './plantinstall.sh' ausführen.)
 
 
 3.	Datenbank (http://java.xrheingauerx.de/raspberry_mariadb_installieren.html)
 ---------------------------------------------------------------------------------
 
-Datenbank Einstellung bei Instalation:
-    1: "Enter current password for root"	        Quitieren mit Enter (wir geben nichts ein)
-    2: "Set root password"	                    Y  (und dann ein Passwort für den Benutzer root vergeben)
-    3: "Remove anonymous users"	                Y  (solche Benutzer wollen wir nicht)
-    4: "Disallow root login remotly"	        Y  (wir wollen, dass sich der Benutzer root nur lokal anmelden kann)
-    5: "Remove test database and access to it"	Y  (wir brauchen keine Test-Datenbank)
-    6: "Reload privilege tables now"	        Y  (diese müssen neu geladen)
+•	Datenbank Einstellung bei Instalation:
+    -	"Enter current password for root"            Quitieren mit Enter (wir geben nichts ein)
+    -	"Set root password"                      Y  (und dann ein Passwort für den Benutzer root vergeben)
+    -	"Remove anonymous users"                 Y  (solche Benutzer wollen wir nicht)
+    -	"Disallow root login remotly"            Y  (wir wollen, dass sich der Benutzer root nur lokal anmelden kann)
+    -	"Remove test database and access to it"  Y  (wir brauchen keine Test-Datenbank)
+    -	"Reload privilege tables now"            Y  (diese müssen neu geladen)
+
 
 SQL befehle zum einrichten Datenbank:
 ---------------------------------------------------------------------------------
@@ -82,9 +83,9 @@ SQL befehle zum einrichten Datenbank:
         -	Strg + O (zum speichern)
         -	Strg + x (nano beenden)
 
-    ■   sudo service mysql restart
+    ■	sudo service mysql restart
 
-    ■   Datenbank Tabellen erstellen:
+    ■	Datenbank Tabellen erstellen:
 
         CREATE TABLE `Sensors` (
         `ID` int(11)  NOT NULL AUTO_INCREMENT,
