@@ -37,15 +37,14 @@ Installation von PlantCare
 1. Raspberry Pi auf setzten.
 ---------------------------------------------------------------------------------
 
-    ■ Raspberry Pi Imager herunterladen: https://www.raspberrypi.com/software/ und installieren.
-    ■ Betriebssystem auswählen: 
+
+    -	Raspberry Pi Imager herunterladen: https://www.raspberrypi.com/software/ und installieren.
+    -	Betriebssystem auswählen: 
     .. image:: ./docs/pios.jpg
         :target: ./docs/pios.jpg
         :alt: License
-
-    ■ SD-Karte auswählen und schreiben drücken.
-    ■ Nach dem der schreiben beendet ist, SD-Karte in der Raspberry einstecken und der Raspberry OS Installation folgen. (hier wird monitor, Tastatur und eine Maus benötigt)
-
+    -	SD-Karte auswählen und schreiben drücken.
+    -	Nach dem der schreiben beendet ist, SD-Karte in der Raspberry einstecken und der Raspberry OS Installation folgen. (hier wird monitor, Tastatur und eine Maus benötigt)
 
 2.	PlantCare Installieren
 ---------------------------------------------------------------------------------
