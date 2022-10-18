@@ -1,5 +1,5 @@
 from plant.care.browser.utils.py.connectDatabase import connectToDatabase as cdb
-
+from datetime import date, datetime
 def insertDatabase(id, name, hum, dry, wet):
     mydb = cdb()
     mycursor = mydb.cursor()
@@ -61,3 +61,65 @@ def getHumidity(id):
     mycursor.close()
     mydb.close()
     return myresult
+
+def insertData(Sensor, humidity):
+    mydb = cdb()
+    mycursor = mydb.cursor()
+    now = datetime.now()
+    date = now.strftime('%Y-%m-%d')
+    time = now.strftime('%H:%M:%S')
+    print("date = " + str(date) + ", time = " + str(time) + ", humidity = "+ str(humidity) + ", sensor = " + str(Sensor))
+    sql = 'INSERT INTO Data (humidity, date, time, Sensor) VALUES (%s, %s, %s, %s);'
+    val = (humidity, date, time, Sensor)
+    mycursor.execute(sql, val)
+    mydb.commit()
+    #print(temp['code'], "was inserted.")
+    mycursor.close()
+    mydb.close()
+    return True
+
+def getHumidityData(sensor):
+    mydb = cdb()
+    mycursor = mydb.cursor()
+    sql = 'select humidity, time from Data where Sensor = %s'
+    val = (sensor,)
+    mycursor.execute(sql, val)
+    myresult = mycursor.fetchall()
+    result = []
+    for i in myresult:
+        result.append({"hum": i[0], "time": dateTimeDeltatoTime(i[1])})
+    mydb.commit()
+    mycursor.close()
+    mydb.close()
+    return result
+
+def getsensors():
+    mydb = cdb()
+    mycursor = mydb.cursor()
+    sql = 'select SensorName from Sensors'
+    val = ()
+    mycursor.execute(sql, val)
+    myresult = mycursor.fetchall()
+    result = []
+
+    for i in myresult:
+        for s in i:
+            result.append(s)
+
+    mydb.commit()
+    mycursor.close()
+    mydb.close()
+    return result
+
+def dateTimeDeltatoTime(delta):
+    s = delta.total_seconds()
+    # hours
+    hours = s // 3600
+    # remaining seconds
+    s = s - (hours * 3600)
+    # minutes
+    minutes = s // 60
+    # remaining seconds
+    seconds = s - (minutes * 60)
+    # total time
+    return '{:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds))

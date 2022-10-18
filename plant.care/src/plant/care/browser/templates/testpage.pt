@@ -13,7 +13,7 @@
     <span class="mdl-layout-title">Test</span>
   </metal:title>
   <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+    <tal:main-macro metal:define-macro="main" tal:define="data view/getdata">
 
 
       <div class="container mdl-grid demo-page demo-page--forms mdl-upgraded" tal:define="test view/testread">
@@ -24,11 +24,21 @@
           <div tal:repeat="temp test">
             <h4>${temp/sensname}, ${temp/value}</h4>
           </div>
+          <div >
+            <canvas id="myChart"></canvas>
+          </div>
         </div>
       </div>
+      <script src="++resource++main-static/js/Chart.min.js"></script>
+      <script src="++resource++main-static/js/utils.js"></script>
       <script type="application/javascript">
+          <tal:block tal:define="obj python:data;">
+            getDataResults(${obj/dataset}, ${obj/time});
 
+          </tal:block>
       </script>
+
+      
     </tal:main-macro>
   </metal:main>
 </body>

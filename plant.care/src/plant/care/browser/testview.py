@@ -6,7 +6,7 @@ import time
 import plant.care.browser.utils.py.connectDatabase as cdb
 import plant.care.browser.utils.py.spi as spi
 import plant.care.browser.utils.py.calibrateSensor as cS
-from plant.care.browser.utils.py.SQLStatements import updateHumidity, getHumidity,insertDatabase
+from plant.care.browser.utils.py.SQLStatements import updateHumidity, getHumidity,insertDatabase, getHumidityData, getsensors
 import paho.mqtt.client as mqtt_client
 import json
 import paho.mqtt.subscribe as subscribe
@@ -40,17 +40,15 @@ class TestView(BrowserView,ConfigFunctions):
     
     def testread(self):
         # self.client = self.connect_mqtt()
-        
         # self.client.loop_start()
         # self.mes = self.subscribe(self.client)
         # #self.client.loop_stop(force=False)
         # print(self.mes)
         mydict = self.getSensHum()
-        msg = subscribe.simple(self.config_json['topic'], hostname=self.config_json['broker'], auth = {'username':self.config_json['username'], 'password':self.config_json['password']} )
-        #print("%s" % (msg.payload.decode('utf8')))
-        x = json.loads(msg.payload.decode('utf8'))
+        # msg = subscribe.simple(self.config_json['topic'], hostname=self.config_json['broker'], auth = {'username':self.config_json['username'], 'password':self.config_json['password']} )
+        # #print("%s" % (msg.payload.decode('utf8')))
+        # x = json.loads(msg.payload.decode('utf8'))
         
-        print(x)
         # insertDatabase(1, "Sensor2", 45, 65535, 42954)
         # try:
         #     # for x in range(0,5):
@@ -71,6 +69,41 @@ class TestView(BrowserView,ConfigFunctions):
         # print('ADC Voltage: ' + str(channel.voltage) + 'V')
         return mydict
 
+    def getdata(self):
+        sensors = getsensors()
+        dataset = []
+        colors = ["#990000", "#3528AC", "#2FB05A"]
+        x = {
+            "label": 'My First dataset',
+            "fill": 'false',
+            "backgroundColor": 'rgb(255, 99, 132)',
+            "borderColor": 'rgb(255, 99, 132)',
+            "data": "hum",
+          }
+        s = 0
+        #sensors = sensors[0]
+        for sen in sensors:
+          
+            temp = getHumidityData(sen)
+            tempdata = x.copy()
+            time = []
+
+            hum = []
+            for i in temp:
+                hum.append(i['hum'])
+                time.append(i['time'])
+
+            tempdata["data"] = hum
+            tempdata["borderColor"] = colors[s]
+            tempdata["backgroundColor"] = colors[s]
+            tempdata["label"] = sen
+
+            s +=1
+            dataset.append(tempdata)
+        data = {"dataset": dataset, "time" : time}
+        return data
+    
+    
     def connect_mqtt(self):
         def on_connect(client, userdata, flags, rc):
             if rc == 0:

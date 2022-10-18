@@ -84,7 +84,7 @@
               <a class="mdl-navigation__link" href="/@@plantcare.home"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
               <a class="mdl-navigation__link" href="/@@plantcare.pidigitalio"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Statistics</a>
               <a class="mdl-navigation__link" href="/@@plantcare.chart"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart_outlined</i>Chart</a>
-              <a class="mdl-navigation__link" href="/@@plantcare.charthour"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart_outlined</i>Settings</a>
+              <a class="mdl-navigation__link" href="/@@plantcare.configedit"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart_outlined</i>Settings</a>
               <a class="mdl-navigation__link" href="/@@plantcare.test"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">description</i>Testseite</a>
 
               <div class="mdl-layout-spacer"></div>
