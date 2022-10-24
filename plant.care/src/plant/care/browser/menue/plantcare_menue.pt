@@ -21,7 +21,7 @@
 
         <link rel="shortcut icon" tal:attributes="href string:++resource++main-static/img/favicon.png">
         <link rel="stylesheet" href="++resource++main-static/fonts/icon.css">
-        <link rel="stylesheet" type="text/css" href="/++resource++zmi/fontawesome-free-5.8.1/css/all.css" />
+        <link rel="stylesheet" type="text/css" href="/++resource++zmi/fontawesome-free-5.15.2/css/all.css" />
         <link rel="stylesheet" href="https://cdn.rawgit.com/MikeMitterer/dart-mdl-theme/v2.2/orange-indigo/material.min.css" />
         <!-- Custom styles for this template-->
         <link tal:attributes="href string:++resource++main-static/css/styles.css" rel="stylesheet">
@@ -85,6 +85,7 @@
               <a class="mdl-navigation__link" href="/@@plantcare.pidigitalio"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Statistics</a>
               <a class="mdl-navigation__link" href="/@@plantcare.chart"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart_outlined</i>Chart</a>
               <a class="mdl-navigation__link" href="/@@plantcare.configedit"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">insert_chart_outlined</i>Settings</a>
+              <a class="mdl-navigation__link" href="/@@plantcare.network"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>PICO Search</a>
               <a class="mdl-navigation__link" href="/@@plantcare.test"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">description</i>Testseite</a>
 
               <div class="mdl-layout-spacer"></div>

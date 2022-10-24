@@ -81,7 +81,7 @@ def insertData(Sensor, humidity):
 def getHumidityData(sensor):
     mydb = cdb()
     mycursor = mydb.cursor()
-    sql = 'select humidity, time from Data where Sensor = %s'
+    sql = ' select d1.humidity, d1.time from (select d.humidity, d.date, d.time from Data d where sensor = %s order by d.date desc, d.time desc limit 1440) d1 order by d1.date asc, d1.time asc'
     val = (sensor,)
     mycursor.execute(sql, val)
     myresult = mycursor.fetchall()
@@ -123,3 +123,16 @@ def dateTimeDeltatoTime(delta):
     seconds = s - (minutes * 60)
     # total time
     return '{:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds))
+
+def getsensorsHome():
+    mydb = cdb()
+    mycursor = mydb.cursor()
+    sql = 'SELECT S.SensorName, d.humidity from Sensors S inner join Data d on SensorName = Sensor order by d.date desc ,d.time desc limit 3'
+    val = ()
+    mycursor.execute(sql, val)
+    myresult = mycursor.fetchall()
+    result = []
+    mydb.commit()
+    mycursor.close()
+    mydb.close()
+    return myresult
