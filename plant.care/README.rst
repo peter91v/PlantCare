@@ -103,8 +103,7 @@ SQL befehle zum einrichten Datenbank:
         `time` datetime DEFAULT NULL,
         `Sensor` varchar(255) NOT NULL,
         PRIMARY KEY (`id`),
-        KEY `SensorName` (`Sensor`),
-        CONSTRAINT `SensorName` FOREIGN KEY (`Sensor`) REFERENCES `Sensors` (`SensorName`) ON DELETE NO ACTION ON UPDATE NO ACTION
+        
         )
 
 4.	Zope/ PlantCare starten
