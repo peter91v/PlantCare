@@ -45,7 +45,7 @@
         </p>
       </div>
         <div class="mdl-cell mdl-cell--12-col">
-          <form action="@@ibm.configedit" method="post">
+          <form action="@@plantcare.configedit" method="post">
             <div class="mdl-textfield mdl-js-textfield">
               <textarea class="mdl-textfield__input" type="text" rows="20" cols="80" id="config_json"
                 name="config_json">${jsonfile}</textarea>
