@@ -43,11 +43,17 @@
 		permission="zope.Public"
 	/>
 		<browser:page
-		for="*"
+		for="*"	
 		name="plantcare.cronjob"
 		class=".cronjob.CronJobView"
 		template="./templates/cronjob.pt"
 		permission="zope.Public"
 	/>
-
+		<browser:page
+		for="*"
+		name="plantcare.chart"
+		class=".chart.ChartView"
+		template="./templates/chart.pt"
+		permission="zope.Public"
+	/>
 </configure>

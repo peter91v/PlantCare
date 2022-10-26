@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="de"
+  xmlns:xlink="http://www.w3.org/1999/xlink" metal:use-macro="here/@@plantcare-main-menue/macros/master">
+<metal:style_custom fill-slot="style_custom">
+</metal:style_custom>
+
+<head>
+
+</head>
+
+<body class="">
+  <metal:title fill-slot="title">
+    <span class="mdl-layout-title">Test</span>
+  </metal:title>
+  <metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main" tal:define="data view/getdata">
+
+
+      <div class="container mdl-grid demo-page demo-page--forms mdl-upgraded" tal:define="">
+        <div class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+
+          <h1>Chart</h1>
+
+          <div tal:repeat="">
+          </div>
+          <div >
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <script src="++resource++main-static/js/Chart.min.js"></script>
+      <script src="++resource++main-static/js/utils.js"></script>
+      <script type="application/javascript">
+          <tal:block tal:define="obj python:data;">
+            getDataResults(${obj/dataset}, ${obj/time});
+
+          </tal:block>
+      </script>
+
+      
+    </tal:main-macro>
+  </metal:main>
+</body>
+
+</html>
