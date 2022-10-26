@@ -22,6 +22,7 @@ src/plant/care/setuphandlers.py
 src/plant/care/subscriber.py
 src/plant/care/testing.py
 src/plant/care/browser/__init__.py
+src/plant/care/browser/chart.py
 src/plant/care/browser/configedit.py
 src/plant/care/browser/configure.zcml
 src/plant/care/browser/cronjob.py
@@ -71,15 +72,14 @@ src/plant/care/browser/static/mdl/material.min.css.map
 src/plant/care/browser/static/mdl/material.min.js
 src/plant/care/browser/static/mdl/material.min.js.map
 src/plant/care/browser/static/mdl/package.json
+src/plant/care/browser/templates/chart.pt
 src/plant/care/browser/templates/configedit.pt
 src/plant/care/browser/templates/cronjob.pt
 src/plant/care/browser/templates/home.pt
 src/plant/care/browser/templates/testpage.pt
 src/plant/care/browser/utils/py/SQLStatements.py
-src/plant/care/browser/utils/py/calibrateSensor.py
 src/plant/care/browser/utils/py/configs.py
 src/plant/care/browser/utils/py/connectDatabase.py
-src/plant/care/browser/utils/py/spi.py
 src/plant/care/locales/README.rst
 src/plant/care/locales/__init__.py
 src/plant/care/locales/plant.care.pot

@@ -4,8 +4,6 @@ from Products.Five.browser import BrowserView
 import os
 import time
 import plant.care.browser.utils.py.connectDatabase as cdb
-import plant.care.browser.utils.py.spi as spi
-import plant.care.browser.utils.py.calibrateSensor as cS
 from plant.care.browser.utils.py.SQLStatements import updateHumidity, getHumidity,insertDatabase, getHumidityData, getsensors
 import paho.mqtt.client as mqtt_client
 import json

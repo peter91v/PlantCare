@@ -87,22 +87,22 @@ SQL befehle zum einrichten Datenbank:
 
     ■	Datenbank Tabellen erstellen:
 
-        CREATE TABLE `Sensors` (
-        `ID` int(11)  NOT NULL AUTO_INCREMENT,
-        `SensorName` varchar(255) NOT NULL,
-        `Humidity` int(11) DEFAULT NULL,
-        `SensorDry` int(11) DEFAULT NULL,
-        `SensorWet` int(11) DEFAULT NULL,
-        PRIMARY KEY (`SensorName`)
+        CREATE TABLE 'Sensors' (
+        'ID' int(11)  NOT NULL AUTO_INCREMENT,
+        'SensorName' varchar(255) NOT NULL,
+        'Humidity' int(11) DEFAULT NULL,
+        'SensorDry' int(11) DEFAULT NULL,
+        'SensorWet' int(11) DEFAULT NULL,
+        PRIMARY KEY ('SensorName')
         )
 
-        CREATE TABLE `Data` (
-        `id` int(11) NOT NULL AUTO_INCREMENT,
-        `humidity` float DEFAULT NULL,
-        `date` date DEFAULT NULL,
-        `time` datetime DEFAULT NULL,
-        `Sensor` varchar(255) NOT NULL,
-        PRIMARY KEY (`id`),
+        CREATE TABLE 'Data' (
+        'id' int(11) NOT NULL AUTO_INCREMENT,
+        'humidity' float DEFAULT NULL,
+        'date' date DEFAULT NULL,
+        'time' datetime DEFAULT NULL,
+        'Sensor' varchar(255) NOT NULL,
+        PRIMARY KEY ('id'),
         
         )
 
