@@ -56,4 +56,12 @@
 		template="./templates/chart.pt"
 		permission="zope.Public"
 	/>
+	<browser:page
+		for="*"
+		name="plantcare.network"
+		class=".networklist.NetworkView"
+		template="./templates/network.pt"
+		permission="zope.Public"
+	/>	
+
 </configure>

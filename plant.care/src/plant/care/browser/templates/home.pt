@@ -58,6 +58,15 @@
         flex-basis: calc(25% - 3rem);
       }
     }
+    .mdl-cell--8-col, .mdl-cell--8-col-desktop.mdl-cell--8-col-desktop {
+      width: 100%;
+  }
+  .mdl-layout__content{
+    width: 90%
+  }
+  .image{
+    height: 1200px;
+  }
   </style>
 
 
@@ -81,11 +90,11 @@
 
 
 
-        <div class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+        <div class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col ">
 
           <h1>Startseite Project PLANTCARE</h1>
 
-          <section id="cards" class="mdl-layout__content mdl-color--grey-100">
+          <section id="cards" class="mdl-layout__content mdl-color--grey-100 ">
             <div class="cards-container">
               <tal:block tal:repeat="items humDict">
                 <div class="card" id=${items} tal:define="obj python:humDict[items];">
@@ -97,8 +106,11 @@
                   </canvas>
 
                 </div>
-              </tal:block>
 
+              </tal:block>
+              <div class="card">
+                <img src="++resource++main-static/img/update.jpg" alt="Update info">
+              </div>
 
             </div>
           </section>

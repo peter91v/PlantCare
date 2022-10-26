@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import imp
 from Products.Five.browser import BrowserView
-from plant.care.browser.utils.py.SQLStatements import updateHumidity, getHumidity
+from plant.care.browser.utils.py.SQLStatements import updateHumidity, getHumidity, getsensorsHome
 import requests
 from plant.care.browser.utils.py.configs import ConfigFunctions
 import paho.mqtt.client as mqtt_client
@@ -18,14 +18,14 @@ class HomeView(BrowserView, ConfigFunctions):
         return super(HomeView, self).__call__(*args, **kwargs)
     
     def getSensHum(self):
-            data1 = getHumidity(0)
+            data1 = getsensorsHome()
             print(data1)
             datadict = {}
-            msg = subscribe.simple(self.config_json['topic'], hostname=self.config_json['broker'], auth = {'username':self.config_json['username'], 'password':self.config_json['password']} )
-            data = json.loads(msg.payload.decode('utf8'))
-            for i in data:
+            # msg = subscribe.simple(self.config_json['topic'], hostname=self.config_json['broker'], auth = {'username':self.config_json['username'], 'password':self.config_json['password']} )
+            # data = json.loads(msg.payload.decode('utf8'))
+            for i in data1:
                 print(i)
-                x = {i:{ 'value': int(round(data[i])), 'text': 'text' }}
+                x = {i[0]:{ 'value': int(round(i[1])), 'text': 'text' }}
                 datadict.update(x)
             return datadict
         
