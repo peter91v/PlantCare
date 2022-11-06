@@ -4,6 +4,39 @@
 <metal:style_custom fill-slot="style_custom">
 
   <script type="text/javascript">
+
+    var changeView = function () {
+      var view = document.getElementById("config_Json");
+      if (view.style.display == "none") {
+        view.style.display = "inherit";
+      } else {
+        view.style.display = 'none';
+      }
+
+    }
+
+  </script>
+  <script>
+    /*var showModal = function (dialog, showdialog, close) {
+      'use strict';
+      var dialog = document.getElementById(dialog);
+      var closeButton = document.getElementById(close);
+      var showButton = document.getElementById(showdialog);
+      if (!dialog.showModal) {
+        dialogPolyfill.registerDialog(dialog);
+      }
+      var closeClickHandler = function (event) {
+        dialog.close();
+      };
+      var showClickHandler = function (event) {
+        dialog.showModal();
+      };
+      showButton.addEventListener('click', showClickHandler);
+      closeButton.addEventListener('click', closeClickHandler);
+
+    };*/
+
+
   </script>
   <style>
     .mdl-data-table.stripped-table tbody tr:nth-child(2n) {
@@ -17,9 +50,19 @@
     .mdl-textfield__input {
       border: 1px solid rgba(0, 0, 0, 0.12);
     }
+
     .mdl-textfielderror {
       color: red;
-    }    
+    }
+  </style>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+    }
   </style>
 </metal:style_custom>
 
@@ -32,34 +75,239 @@
     <span class="mdl-layout-title">Bearbeiten der Grundeinstellungen</span>
   </metal:title>
   <metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+    <tal:main-macro metal:define-macro="main"
+      tal:define="has_scan python:view.check_showip; own_ip python:view.get_my_ownip;">
+      <div class="container mdl-grid mdl-grid1 demo-page demo-page--forms mdl-upgraded">
+        <div
+          class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col  form"
+          tal:define="jsonfile view/get_config_as_string; errormsg view/get_errorMessage">
+          <p>
+          <h4 id="h4">Config edit</h4>
+          <button class="mdl-button mdl-js-button mdl-button--icon infoIcon trigger" id="showdialog"
+             data-dialogname="dialog">
+            <i class="material-icons">help_outline </i>
+          </button></p>
+          <h4 id="h4" class="mdl-textfielderror">${errormsg}</h4>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent "
+            data-upgraded=",MaterialButton,MaterialRipple" onclick="changeView()">
+            Show config-Data
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
 
-      <div class="mdl-grid demo-content" tal:define="jsonfile view/get_config_as_string; errormsg view/get_errorMessage">
-        <h4>Config edit</h4>
-        <div class="mdl-cell mdl-cell--12-col">
-          <h4 class="mdl-textfielderror">${errormsg}</h4>
-        <p>
-          Die config-Daten werden als JSON in der ZODB im Ordner data_container als config.json abgelegt.<br> Pfad =
-          <a href="/data_container/config.json" target="_blank">/data_container/config.json</a><br>eine File-Übersicht erhält man mit: /data_container/manage_main<br><br>
-          ACHTUNG: Bitte immer eine richtige Json Struktur eintragen. Gibt noch keine Eingabeprüfung!!
-        </p>
-      </div>
-        <div class="mdl-cell mdl-cell--12-col">
-          <form action="@@plantcare.configedit" method="post">
-            <div class="mdl-textfield mdl-js-textfield">
-              <textarea class="mdl-textfield__input" type="text" rows="20" cols="80" id="config_json"
-                name="config_json">${jsonfile}</textarea>
-              <label class="mdl-textfield__label" for="config_json">Lines...</label>
+
+
+          <dialog class="mdl-dialog" id="dialog">
+            <div class="mdl-dialog__content">
+              <p style="text-align: justify;">
+                Die config-Daten werden als JSON in der ZODB im Ordner data_container als config.json abgelegt.<br> Pfad
+                =
+                <a href="/data_container/config.json" target="_blank">/data_container/config.json</a><br>eine
+                File-Übersicht
+                erhält man mit: /data_container/manage_main<br><br>
+                ACHTUNG: Bitte immer eine richtige Json Struktur eintragen. Gibt noch keine Eingabeprüfung!!
+              </p>
             </div>
-            <p><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                type="submit" data-upgraded=",MaterialButton,MaterialRipple">
-                Speichern
-                <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></p>
-           </form>
+            <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+              <button type="button" class="mdl-button dialogClose" id="closebtn">Close</button>
+            </div>
+          </dialog>
+
+
+
+          <div class="mdl-cell mdl-cell--12-col " id="config_Json" style="display: none">
+            <form action="@@plantcare.configedit" method="post">
+              <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows="20" cols="80" id="config_json"
+                  name="config_json">${jsonfile}</textarea>
+                <label class="mdl-textfield__label" for="config_json">Lines...</label>
+              </div>
+              <p><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                  type="submit" data-upgraded=",MaterialButton,MaterialRipple">
+                  Speichern
+                  <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></p>
+            </form>
+          </div>
+
+
         </div>
       </div>
+
+
+      <div class="container mdl-grid mdl-grid1 demo-page demo-page--forms mdl-upgraded">
+        <div
+          class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col form">
+
+          <h4 id="h4">Scan des lokalen Netzwerks.</h4>
+
+          <button class="mdl-button mdl-js-button mdl-button--icon infoIcon trigger" id="showdialog1"
+             data-dialogname="dialog1">
+            <i class="material-icons">help_outline </i>
+          </button>
+
+          <dialog class="mdl-dialog" id="dialog1">
+            <div class="mdl-dialog__content">
+              <p style="text-align: justify;">
+                Um den <b>Raspberrs Pico</b> im Netz zu identifizieren, sannen wir das lokale Netztwerk nach den
+                vorhandenen
+                IP's und Hostnames.<br>
+                Normalerweise beginnt der PICO Hostname mit PYBD. <br>
+                Mit den Buttons Test ON und Test OFF können Sie testen welchen Pico Sie erreichen (LED ON / Off)
+              </p>
+            </div>
+            <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+              <button type="button" class="mdl-button dialogClose" id="closebtn1">Close</button>
+            </div>
+          </dialog>
+
+          <p>
+            Die Ip des Raspi Servers ist: <b>${own_ip}</b>
+          </p>
+          <form action="@@plantcare.configedit" class="" method="POST">
+            <input type="hidden" name="start_scan" id="start_scan" value="1" />
+            <p>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                type="submit" data-upgraded=",MaterialButton,MaterialRipple" id="scanbutton">
+                Start Scan
+                <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+            </p>
+          </form>
+          <p>
+            <b>ACHTUNG: Der Scan kann 1 - 2 Minuten dauern und blockiert in dieser Zeit den RASPI Server!!</b>
+          </p>
+
+
+
+          <tal:block tal:condition="python:has_scan==True">
+            <div
+              class="mdl-grid demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
+              tal:define="iplist python:view.get_ip_list()">
+              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="iptable_main">
+                <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">IP-Adresse</th>
+                    <th>Hostname</th>
+                    <th>Test ON</th>
+                    <th>Test OFF</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr tal:repeat="ip iplist">
+                    <tal:block tal:define="names python:iplist[ip];">
+                      <td class="mdl-data-table__cell--non-numeric">${ip}</td>
+                      <td class="mdl-data-table__cell--non-numeric" tal:content="structure names"></td>
+
+                      <td><button
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent teston"
+                          data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
+                          LED on
+                          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                      </td>
+                      <td><button
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent testoff"
+                          data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
+                          LED off
+                          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                      </td>
+                      <td><button
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent setpico"
+                          data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
+                          Send IP an PICO
+                          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                      </td>
+                    </tal:block>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          </tal:block>
+
+        </div>
+      </div>
+      <script>
+        $(function () {
+          var _makeajax = function (httpsend) {
+            $.ajax({
+              type: 'get',
+              url: httpsend,
+              async: false,
+              success: function (data, textStatus, xhr) {
+                alert(xhr.status);
+              },
+              complete: function (xhr, textStatus) {
+                alert(xhr.status);
+              }
+            });
+          };
+          var sendToRasperriPico = function () {
+            var ip = $(this).data('ip');
+            var serverip = $(this).data('serverip');
+            var httpsend = 'http://' + ip + '/ip=' + serverip;
+            if (confirm('Achtung!! Sie senden folgende Daten an ' + ip + '\n vom IP: ' + serverip + '\n' + httpsend)) {
+              _makeajax(httpsend);
+            }
+          };
+          var testOnPico = function () {
+            var ip = $(this).data('ip');
+            var serverip = $(this).data('serverip');
+            var httpsend = 'http://' + ip + '/on'
+            if (confirm('Achtung!! Sie senden folgende Daten an ' + ip + '\n vom IP: ' + serverip + '\n' + httpsend)) {
+              _makeajax(httpsend);
+            }
+          };
+          var testOffPico = function () {
+            var ip = $(this).data('ip');
+            var serverip = $(this).data('serverip');
+            var httpsend = 'http://' + ip + '/off'
+            if (confirm('Achtung!! Sie senden folgende Daten an ' + ip + '\n vom IP: ' + serverip + '\n' + httpsend)) {
+              _makeajax(httpsend);
+            }
+          };
+          var showModalBackdrop = function () {
+            $('<div style="z-index: 1040; opacity: 0.75; display: block;" class="plone-modal-backdrop"></div>').appendTo('body');
+            return true;
+          };
+          $(".teston").on('click', testOnPico);
+          $(".testoff").on('click', testOffPico);
+          $(".setpico").on('click', sendToRasperriPico);
+          $("#scanbutton").on('click', showModalBackdrop);
+        });
+
+        //--------------------------------------------------------------
+        // Here we hande the Dialog Functions for Dialog WIndows
+        // the Button must have a data-dialogname attribute with name of the Dialog div
+        //--------------------------------------------------------------
+        var dialog = '';
+        var showClickHandler1 = function (event) {
+
+          var modal_element = this.getAttribute('data-dialogname');
+          dialog = document.getElementById(modal_element);
+          dialog.showModal();
+        };
+
+        var dialogclose = function (event) {
+          dialog.close();
+        };
+
+        // Add Click Handlers
+        const elements = document.querySelectorAll (".trigger");
+        for (let i=0; i<elements.length; i++) {
+          elements[i].addEventListener('click', showClickHandler1);
+        }
+        const closeelements = document.querySelectorAll (".dialogClose");
+        for (let i=0; i<closeelements.length; i++) {
+          closeelements[i].addEventListener('click', dialogclose);
+        }
+
+
+      </script>
+
+
     </tal:main-macro>
   </metal:main>
 </body>
+
 
 </html>

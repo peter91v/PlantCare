@@ -30,77 +30,86 @@
     <tal:main-macro metal:define-macro="main"
       tal:define="has_scan python:view.check_showip; own_ip python:view.get_my_ownip;">
 
-
-      <div class="mdl-card__supporting-text">
-        <h3>Scan des lokalen Netzwerks.</h3>
-        <p>
-          Um den <b>Raspberrs Pico</b> im Netz zu identifizieren, sannen wir das lokale Netztwerk nach den vorhandenen
-          IP's und Hostnames.<br>
-          Normalerweise beginnt der PICO Hostname mit PYBD. <br>
-          Mit den Buttons Test ON und Test OFF können Sie testen welchen Pico Sie erreichen (LED ON / Off)
-        </p>
-        <p>
-          Die Ip des Raspi Servers ist: <b>${own_ip}</b>
-        </p>
-        <form action="@@plantcare.network" class="" method="POST">
-          <input type="hidden" name="start_scan" id="start_scan" value="1" />
-          <p>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-              type="submit" data-upgraded=",MaterialButton,MaterialRipple" id="scanbutton">
-              Start Scan
-              <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
-          </p>
-        </form>
-        <p>
-          <b>ACHTUNG: Der Scan kann 1 - 2 Minuten dauern und blockiert in dieser Zeit den RASPI Server!!</b>
-        </p>
-      </div>
-
-
-      <tal:block tal:condition="python:has_scan==True">
+      <div class="container mdl-grid mdl-grid1 demo-page demo-page--forms mdl-upgraded">
         <div
-          class="mdl-grid demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
-          tal:define="iplist python:view.get_ip_list()">
-          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="iptable_main">
-            <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric">IP-Adresse</th>
-                <th>Hostname</th>
-                <th>Test ON</th>
-                <th>Test OFF</th>
-                <th>Action</th>
-              </tr>
-            </thead>
+          class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col form">
+          <div class="mdl-card__supporting-text">
+            <h3>Scan des lokalen Netzwerks.</h3>
+            <p>
+              Um den <b>Raspberrs Pico</b> im Netz zu identifizieren, sannen wir das lokale Netztwerk nach den
+              vorhandenen
+              IP's und Hostnames.<br>
+              Normalerweise beginnt der PICO Hostname mit PYBD. <br>
+              Mit den Buttons Test ON und Test OFF können Sie testen welchen Pico Sie erreichen (LED ON / Off)
+            </p>
+            <p>
+              Die Ip des Raspi Servers ist: <b>${own_ip}</b>
+            </p>
+            <form action="@@plantcare.network" class="" method="POST">
+              <input type="hidden" name="start_scan" id="start_scan" value="1" />
+              <p>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                  type="submit" data-upgraded=",MaterialButton,MaterialRipple" id="scanbutton">
+                  Start Scan
+                  <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+              </p>
+            </form>
+            <p>
+              <b>ACHTUNG: Der Scan kann 1 - 2 Minuten dauern und blockiert in dieser Zeit den RASPI Server!!</b>
+            </p>
+          </div>
 
-            <tbody>
-              <tr tal:repeat="ip iplist">
-                <tal:block tal:define="names python:iplist[ip];">
-                  <td class="mdl-data-table__cell--non-numeric">${ip}</td>
-                  <td class="mdl-data-table__cell--non-numeric" tal:content="structure names"></td>
 
-                  <td><button
-                      class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent teston"
-                      data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
-                      LED on
-                      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></td>
-                  <td><button
-                      class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent testoff"
-                      data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
-                      LED off
-                      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></td>
-                  <td><button
-                      class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent setpico"
-                      data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
-                      Send IP an PICO
-                      <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></td>
-                </tal:block>
-              </tr>
-            </tbody>
-          </table>
+          <tal:block tal:condition="python:has_scan==True">
+            <div
+              class="mdl-grid demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col"
+              tal:define="iplist python:view.get_ip_list()">
+              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="iptable_main">
+                <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric">IP-Adresse</th>
+                    <th>Hostname</th>
+                    <th>Test ON</th>
+                    <th>Test OFF</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr tal:repeat="ip iplist">
+                    <tal:block tal:define="names python:iplist[ip];">
+                      <td class="mdl-data-table__cell--non-numeric">${ip}</td>
+                      <td class="mdl-data-table__cell--non-numeric" tal:content="structure names"></td>
+
+                      <td><button
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent teston"
+                          data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
+                          LED on
+                          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                      </td>
+                      <td><button
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent testoff"
+                          data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
+                          LED off
+                          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                      </td>
+                      <td><button
+                          class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent setpico"
+                          data-upgraded=",MaterialButton,MaterialRipple" data-ip="${ip}" data-serverip="${own_ip}">
+                          Send IP an PICO
+                          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                      </td>
+                    </tal:block>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          </tal:block>
+
         </div>
-
-      </tal:block>
-
+      </div>
       <script>
         $(function () {
           var _makeajax = function (httpsend) {
@@ -119,7 +128,7 @@
           var sendToRasperriPico = function () {
             var ip = $(this).data('ip');
             var serverip = $(this).data('serverip');
-            var httpsend = 'http://' + ip + '?ip=' + serverip;
+            var httpsend = 'http://' + ip + '/ip=' + serverip;
             if (confirm('Achtung!! Sie senden folgende Daten an ' + ip + '\n vom IP: ' + serverip + '\n' + httpsend)) {
               _makeajax(httpsend);
             }
