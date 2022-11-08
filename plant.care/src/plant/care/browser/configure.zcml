@@ -70,5 +70,12 @@
 		template="./templates/filter.pt"
 		permission="zope.Public"
 	/>	
+	<browser:page
+		for="*"
+		name="plantcare.gitlabreadme"
+		class=".gitlab_readme.ReadMeView"
+		template="./templates/gitlab_readme.pt"
+		permission="zope.Public"
+	/>
 
 </configure>
