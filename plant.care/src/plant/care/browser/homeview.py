@@ -31,4 +31,7 @@ class HomeView(BrowserView, ConfigFunctions):
         
     def getHumidity(self):
             #humDict =  {'sensor1': {'value':80, 'text': 'text'}, 'sensor2': {'value':63, 'text': 'text1'}, 'sensor3': {'value':15, 'text': 'text2'}}
-            return self.getSensHum()
+            # Sort Dictionary by Sensorkey
+            SensDict = self.getSensHum()
+            sorted_dict = {k: SensDict[k] for k in sorted(SensDict)}
+            return sorted_dict

@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="de"
+  metal:use-macro="here/@@plantcare-main-menue/macros/master">
+<metal:style_custom fill-slot="style_custom">
+  <style>
+
+.markdown-body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 16px;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+.markdown-body blockquote {
+    padding: 0 1em;
+    color: #57606a;
+    border-left: 0.25em solid #d0d7de;
+}
+.markdown-body blockquote:before {
+    position: absolute;
+    left: -0.5em;
+    content: '';
+}
+.markdown-body blockquote:after {
+    position: absolute;
+    left: -0.5em;
+    content: '';
+}
+.markdown-body {
+    word-wrap: break-word;
+}
+.markdown-body h3 {
+    font-size: 1.25em;
+}  
+.markdown-body blockquote>:last-child {
+    margin-bottom: 0;
+}
+.markdown-body blockquote>:first-child {
+    margin-top: 0;
+}
+.markdown-body ul, .markdown-body ol {
+    padding-left: 2em;
+}
+.markdown-body li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+svg, video {
+    display: none;
+}
+  </style>
+</metal:style_custom>  
+<head>
+
+</head>
+
+<body class="">
+  <metal:title fill-slot="title">
+    <span class="mdl-layout-title">GitLab</span>
+  </metal:title>
+  <metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+
+<div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+<article class="markdown-body">
+<div tal:replace="structure view/getHtmlFromGitlab" />
+
+</article>
+</div>
+    </tal:main-macro>
+  </metal:main>
+</body>
+
+</html>

@@ -11,7 +11,7 @@ import paho.mqtt.subscribe as subscribe
 from plant.care.browser.utils.py.configs import ConfigFunctions
 
 
-class TestView(BrowserView, ConfigFunctions):
+class ChartView(BrowserView, ConfigFunctions):
     def __call__(self, *args, **kwargs):
 
         self.config_json = self.read_config()
@@ -45,7 +45,7 @@ class TestView(BrowserView, ConfigFunctions):
             print(self.count)
             print(self.dateVon)
             print("post", self.sumOfValues)
-        return super(TestView, self).__call__(*args, **kwargs)
+        return super(ChartView, self).__call__(*args, **kwargs)
 
     def get_selected_sensor(self):
         return self.callSensor

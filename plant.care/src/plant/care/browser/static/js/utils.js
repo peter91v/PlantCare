@@ -114,11 +114,18 @@ var getFormResults = function (name, value) {
           '#eaeae8'
         ],
         borderWidth: 1
-      }]
+      }],
+      labels: [
+        "Feuchte",
+        "Trocken"
+      ]
     },
     options: {
       cutoutPercentage: 80,
       responsive: true,
+      legend: {
+        display: false
+      },
       elements: {
         center: {
           text: value + '%',
@@ -145,10 +152,35 @@ var getDataResults = function (dataset, time) {
       
         const config = {
           type: 'line',
+          
           data: data,
-          options: {}
+          options: {
+            plugins: {
+              chartAreaBorder: {
+                borderColor: 'red',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                borderDashOffset: 2,
+              }
+            }
+          },
+          plugins: [chartAreaBorder]
         };
         const myChart = new Chart(
           document.getElementById('myChart'),
           config
         );}
+
+const chartAreaBorder = {
+  id: 'chartAreaBorder',
+  beforeDraw(chart, args, options) {
+    const {ctx, chartArea: {left, top, width, height}} = chart;
+    ctx.save();
+    ctx.strokeStyle = options.borderColor;
+    ctx.lineWidth = options.borderWidth;
+    ctx.setLineDash(options.borderDash || []);
+    ctx.lineDashOffset = options.borderDashOffset;
+    ctx.strokeRect(left, top, width, height);
+    ctx.restore();
+  }
+};
