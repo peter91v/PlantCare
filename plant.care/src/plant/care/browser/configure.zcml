@@ -77,5 +77,11 @@
 		template="./templates/gitlab_readme.pt"
 		permission="zope.Public"
 	/>
-
+	<browser:page
+		for="*"
+		name="plantcare.test"
+		class=".testchart.TestChartView"
+		template="./templates/testchart.pt"
+		permission="zope.Public"
+	/>	
 </configure>

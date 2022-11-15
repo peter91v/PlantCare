@@ -15,10 +15,10 @@ class CronJobView(BrowserView, ConfigFunctions):
         #self.config_json['broker'] = '192.168.178.120'
         print('We Start',self.config_json)
         ##msg = subscribe.simple(self.config_json['topic'], hostname=self.config_json['broker'], auth = {'username':self.config_json['username'], 'password':self.config_json['password']} )
-        BROKER_ADDRESS = "192.168.178.120"
+        BROKER_ADDRESS = self.get_my_ip()
         BROKER_PORT = 1883
         max_run = 30
-        x = ClientHelp('STO_MQTT',BROKER_ADDRESS,BROKER_PORT,max_run)
+        x = ClientHelp('hello',BROKER_ADDRESS,BROKER_PORT,max_run)
         p = Process(target=x.run())
         p.start()
         p.join()
@@ -28,12 +28,15 @@ class CronJobView(BrowserView, ConfigFunctions):
 
 class ClientHelp():
     def on_message(self, client, userdata, message):
-        msg = message.payload.decode()
+        msg = json.loads(message.payload.decode('utf8'))
         dict = json.dumps(msg)
         print("Received message '" + str(msg) + "' on topic '" + message.topic + "' with QoS " + str(message.qos))
-        if "no_sens" in dict:
+        if "no_sens" in msg:
             print("kein Sensor")
             self.stop()
+        else:
+            for sen in msg:
+                insertData(sen, msg[sen])
 
     def on_connect(self, client, userdata, flags, rc):
         print("connected")

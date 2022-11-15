@@ -80,7 +80,7 @@
               <a class="mdl-navigation__link" href="/@@plantcare.chart"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation"> stacked_line_chart</i>Chart</a>
               <a class="mdl-navigation__link" href="/@@plantcare.configedit"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">settings</i>Settings</a>
               <!-- <a class="mdl-navigation__link" href="/@@plantcare.network"><i class="mdl-color-text- -blue-grey-400 material-icons" role="presentation">inbox</i>PICO Search</a> -->
-              <!-- <a class="mdl-navigation__link" href="/@@plantcare.test"><i class="mdl-color-text- -blue-grey-400 material-icons" role="presentation">description</i>Testseite</a> -->
+              <a class="mdl-navigation__link" href="/@@plantcare.test"><i class="mdl-color-text- -blue-grey-400 material-icons" role="presentation">description</i>Testseite</a>
 
               <div class="mdl-layout-spacer"></div>
               <a class="mdl-navigation__link" href="https://getmdl.io/templates/index.html" target="_blank"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
