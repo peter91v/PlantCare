@@ -3,6 +3,7 @@ from http.client import ImproperConnectionState
 import json
 import transaction
 import requests
+import socket
 
 
 class ConfigFunctions(object):
@@ -75,7 +76,7 @@ class ConfigFunctions(object):
                                   content_type='application/json')
 
     def getResponse(self, ip):
-        url = 'http://'+ip+'/json'
+        url = 'http://'+ip
         print(url)
         response = requests.get(url)
         return response.json()
@@ -83,3 +84,14 @@ class ConfigFunctions(object):
             if 'application/json' in response.headers['Content-Type']:
                 return response.json()
         return {'errors': ['StatusCode:'+str(response.status_code), 'CONTENTTYPE:'+response.headers['Content-Type']]}
+
+    def get_my_ip(self):
+        """
+        Find my IP address
+        :return:
+        """
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.connect(("8.8.8.8", 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip

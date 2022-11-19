@@ -1,0 +1,170 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n" lang="de"
+  xmlns:xlink="http://www.w3.org/1999/xlink" metal:use-macro="here/@@plantcare-main-menue/macros/master">
+<metal:style_custom fill-slot="style_custom">
+  <script type="text/javascript">
+
+    var showForm = function () {
+      var view = document.getElementById("filterForm");
+      if (view.style.display == "none") {
+        view.style.display = "inherit";
+      } else {
+        view.style.display = 'none';
+      }
+
+    }
+
+  </script>
+  <style>
+    .buttonChart {
+      float: right;
+      margin: 1rem 0.5rem;
+    }
+
+    .filt {
+      display: table-row;
+    }
+  </style>
+
+</metal:style_custom>
+
+<head>
+
+</head>
+
+<body class="">
+  <metal:title fill-slot="title">
+    <span class="mdl-layout-title">Chart</span>
+  </metal:title>
+  <metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main" tal:define="data view/getdata">
+
+
+      <div class="container mdl-grid mdl-grid1 demo-page demo-page--forms mdl-upgraded">
+        <div
+          class="content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col mdl-cell--8-col1 form">
+
+          <p><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent "
+              data-upgraded=",MaterialButton,MaterialRipple" onclick="showForm()">
+              Show Filter
+              <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></p>
+
+          <div class="mdl-grid1 " id="filterForm" style="display: none">
+            <form class="mdl-grid1 form mdl-shadow--8dp" action="@@plantcare.chart" method="POST" tal:define="selectedsens python:view.get_selected_sensor(); getcounter python:view.get_selected_counter();
+          getdate python:view.get_selected_dateBis(); gettime python:view.get_selected_timeVon()">
+
+              <div class="mdl-grid1 filt">
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+                  tal:define="sensors python:view.getTable()">
+                  <input type="text" value="" class="mdl-textfield__input" id="Sensors" readonly>
+                  <input type="hidden" value="" name="Sensors">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                  <label for="Sensors" class="mdl-textfield__label">Sensors</label>
+                  <ul for="Sensors" class="mdl-menu mdl-menu--bottom-right mdl-js-menu">
+                    <li id="All" class="mdl-menu__item" data-val="All">Alle Sensore</li>
+                    <li tal:repeat="tables sensors" id="${python:tables['table']}" class="mdl-menu__item"
+                      data-val="${python:tables['table']}"
+                      tal:attributes="selected python: 'selected 'if str(tables['table']) == selectedsens else None">
+                      ${python:tables['table']}</li>
+                  </ul>
+                </div>
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+                  tal:define="Counts python:view.makeCounter()">
+                  <input type="text" value="" class="mdl-textfield__input" id="count" readonly>
+                  <input type="hidden" value="" name="count">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                  <label for="count" class="mdl-textfield__label">Anzahl</label>
+                  <ul for="count" class="mdl-menu mdl-menu--bottom-right mdl-js-menu">
+                    <li tal:repeat="val Counts" id="${python:val['countr']}" class="mdl-menu__item"
+                      data-val="${python:val['countr']}">${python:val['countr']}</li>
+                  </ul>
+                </div>
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+                  tal:define="Dates python:view.getTableDates()">
+                  <input type="text" value="" class="mdl-textfield__input" id="dateVon" readonly>
+                  <input type="hidden" value="" name="dateVon">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                  <label for="dateVon" class="mdl-textfield__label">Datum von</label>
+                  <ul for="dateVon" class="mdl-menu mdl-menu--bottom-right mdl-js-menu">
+                    <li tal:repeat="vals Dates" id="${python:vals['Date']}" class="mdl-menu__item"
+                      data-val="${python:vals['Date']}">${python:vals['Date']}</li>
+                  </ul>
+                </div>
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+                  tal:define="Dates python:view.getTableDates()">
+                  <input type="text" value="" class="mdl-textfield__input" id="dateBis" readonly>
+                  <input type="hidden" value="" name="dateBis">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                  <label for="dateBis" class="mdl-textfield__label">Datum bis</label>
+                  <ul for="dateBis" class="mdl-menu mdl-menu--bottom-right mdl-js-menu">
+                    <li tal:repeat="vals Dates" id="${python:vals['Date']}" class="mdl-menu__item"
+                      data-val="${python:vals['Date']}">${python:vals['Date']}</li>
+                  </ul>
+                </div>
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+                  tal:define="Times python:view.getTableTimes()">
+                  <input type="text" value="" class="mdl-textfield__input" id="timevon" readonly>
+                  <input type="hidden" value="" name="timevon">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                  <label for="timevon" class="mdl-textfield__label">Zeit von</label>
+                  <ul for="timevon" class="mdl-menu mdl-menu--bottom-right mdl-js-menu">
+                    <li tal:repeat="vals1 Times" id="${python:vals1['Time']}" class="mdl-menu__item"
+                      data-val="${python:vals1['Time']}">${python:vals1['Time']}</li>
+                  </ul>
+                </div>
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+                  tal:define="Times python:view.getTableTimes()">
+                  <input type="text" value="" class="mdl-textfield__input" id="timeBis" readonly>
+                  <input type="hidden" value="" name="timeBis">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                  <label for="timeBis" class="mdl-textfield__label">Zeit bis</label>
+                  <ul for="timeBis" class="mdl-menu mdl-menu--bottom-right mdl-js-menu">
+                    <li tal:repeat="vals1 Times" id="${python:vals1['Time']}" class="mdl-menu__item"
+                      data-val="${python:vals1['Time']}">${python:vals1['Time']}</li>
+                  </ul>
+                </div>
+                <div
+                  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height"
+                  tal:define="steps python:view.getSteps()">
+                  <input type="text" value="" class="mdl-textfield__input" id="step" readonly>
+                  <input type="hidden" value="" name="step">
+                  <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+                  <label for="step" class="mdl-textfield__label">Schritte</label>
+                  <ul for="step" class="mdl-menu mdl-menu--bottom-right mdl-js-menu">
+                    <li tal:repeat="step steps" id="${python:step['Step']}" class="mdl-menu__item"
+                      data-val="${python:step['Step']}">Jeder ${python:step['Step']} minuten</li>
+                  </ul>
+                </div>
+                <p class="buttonChart"><button type="submit" value="Submit"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent "
+                    data-upgraded=",MaterialButton,MaterialRipple">
+                    Submit
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button></p>
+              </div>
+
+            </form>
+          </div>
+          <div>
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <script src="++resource++main-static/js/Chart.min.js"></script>
+      <script src="++resource++main-static/js/utils.js"></script>
+      <script src="++resource++main-static/js/getmdl-select.min.js"></script>
+      <tal:block tal:define="dataset python:data['dataset']; time python:data['time'];">
+        <script type="application/javascript">
+          getDataResults(${ dataset }, ${ time });
+        </script>
+      </tal:block>
+    </tal:main-macro>
+  </metal:main>
+</body>
+
+</html>

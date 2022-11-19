@@ -1,3 +1,6 @@
 *.iml
-plone.recipe.zope2instance/
-__pycache__/
+
+plone.recipe.zope2instance
+__pycache__
+
+
