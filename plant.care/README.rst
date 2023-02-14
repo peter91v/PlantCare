@@ -55,63 +55,18 @@ Installation von PlantCare
     •	(wenn es nicht starten lässt, zuerst mit dem Befehl 'chmod -x plantinstall.sh' das Privileg ändern und erneut './plantinstall.sh' ausführen.)
 
 
-3.	Datenbank (http://java.xrheingauerx.de/raspberry_mariadb_installieren.html)
+3.	Datenbank 
 ---------------------------------------------------------------------------------
-
-    ■	Datenbank Einstellung bei Instalation:
-        -	"Enter current password for root"            Quitieren mit Enter (wir geben nichts ein)
-        -	"Set root password"                      Y  (und dann ein Passwort für den Benutzer root vergeben)
-        -	"Remove anonymous users"                 Y  (solche Benutzer wollen wir nicht)
-        -	"Disallow root login remotly"            Y  (wir wollen, dass sich der Benutzer root nur lokal anmelden kann)
-        -	"Remove test database and access to it"  Y  (wir brauchen keine Test-Datenbank)
-        -	"Reload privilege tables now"            Y  (diese müssen neu geladen)
-
-
-SQL befehle zum einrichten Datenbank:
----------------------------------------------------------------------------------
-
-    ■	sudo mysql
-        -	create database plantcare;
-        -	create user 'plantcare'@'%' identified by 'plantcare';
-        -	grant all privileges on plantcare.* to 'plantcare'@'%' identified by 'plantcare';
-        -	flush privileges;
-        -	\q
-
-    ■	sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
-        -	‘#’ Zeichen bei port entfernen
-        -	Bind-address = 0.0.0.0
-        -	Strg + O (zum speichern)
-        -	Strg + x (nano beenden)
-
-    ■	sudo service mysql restart
-
-    ■	Datenbank Tabellen erstellen:
-
-        CREATE TABLE 'Sensors' (
-        'ID' int(11)  NOT NULL AUTO_INCREMENT,
-        'SensorName' varchar(255) NOT NULL,
-        'Humidity' int(11) DEFAULT NULL,
-        'SensorDry' int(11) DEFAULT NULL,
-        'SensorWet' int(11) DEFAULT NULL,
-        PRIMARY KEY ('SensorName')
-        )
-
-        CREATE TABLE 'Data' (
-        'id' int(11) NOT NULL AUTO_INCREMENT,
-        'humidity' float DEFAULT NULL,
-        'date' date DEFAULT NULL,
-        'time' datetime DEFAULT NULL,
-        'Sensor' varchar(255) NOT NULL,
-        PRIMARY KEY ('id'),
-        
-        )
+Wird automatisch Installiert und eingestellt nach der anleitung von:
+(http://java.xrheingauerx.de/raspberry_mariadb_installieren.html) 
+Alle benötigte Tabellen werden bei der Installation erstellt.
 
 4.	Zope/ PlantCare starten
 ---------------------------------------------------------------------------------
 
-    ■	cd /home/pi/Plant_Care/Zope
-    ■	bin/zopeinstance fg (für developer)
-    ■	bin/zopeinstance start (als service starten)
+    ■	cd /home/pi/Plant_Care/Zope \n
+    ■	bin/zopeinstance fg (für developer) \n
+    ■	bin/zopeinstance start (als service starten) \n
 
 
 Documentation
@@ -126,10 +81,6 @@ Translations
 
 Contribute
 ----------
-
-- Issue Tracker: https://github.com/collective/plant.care/issues
-- Source Code: https://github.com/collective/plant.care
-- Documentation: https://docs.plone.org/foo/bar
 
 
 Support
