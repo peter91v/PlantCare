@@ -63,11 +63,9 @@ Alle benötigte Tabellen werden bei der Installation erstellt.
 
 4.	Zope/ PlantCare starten
 ---------------------------------------------------------------------------------
-
-    ■	cd /home/pi/Plant_Care/Zope \n
-    ■	bin/zopeinstance fg (für developer) \n
-    ■	bin/zopeinstance start (als service starten) \n
-
+    •	cd /home/pi/Plant_Care/Zope 
+    •	bin/zopeinstance fg (für Entwickeln)
+    •	bin/zopeinstance start (als service starten)
 
 Documentation
 -------------
